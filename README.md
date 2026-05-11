@@ -8,12 +8,12 @@ Benchmark AI API models over time. Detect when they get dumber.
 ## Install
 
 ```bash
-pip install git+https://github.com/minirr890112-byte/HermesMade.git#subdirectory=model-watch
+pip install git+https://github.com/minirr890112-byte/model-watch.git
 ```
 
 Or from local:
 ```bash
-cd HermesMade/model-watch && pip install .
+cd model-watch && pip install .
 ```
 
 ## Usage
