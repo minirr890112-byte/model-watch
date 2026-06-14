@@ -51,4 +51,13 @@ model-watch alert
 
 ## From Reddit
 
-Part of [HermesMade](https://github.com/minirr890112-byte/HermesMade) — tools built from real Reddit pain points.
+## 生态系统
+
+| Tool | Description |
+|---|---|
+| [api-cost-compare](https://github.com/minirr890112-byte/api-cost-compare) | Compare LLM API pricing |
+| [model-cost-advisor](https://github.com/minirr890112-byte/model-cost-advisor) | Recommend best LLM by cost |
+| [claude-intel-monitor](https://github.com/minirr890112-byte/claude-intel-monitor) | Full benchmark monitoring suite |
+| [prompt-inspector](https://github.com/minirr890112-byte/prompt-inspector) | Scan prompts for triggers |
+
+Part of [HermesMade]Part of [HermesMade](https://github.com/minirr890112-byte/HermesMade) — tools built from real Reddit pain points.
