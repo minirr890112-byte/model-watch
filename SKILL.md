@@ -1,12 +1,12 @@
 ---
 name: model-watch
-description: Benchmark AI API models over time and detect intelligence degradation. 7 standardized tests (Reasoning/Coding/Writing/Instruction/Hallucination), score history tracking, and automatic alerts when scores drop >10%.
+description: Benchmark AI API models over time and detect quality degradation. 7 standardized tests (reasoning, coding, writing, instruction-following, hallucination). Alerts when scores drop >10% vs historical average. Because models silently get dumber.
 version: 1.2.0
 author: minirr890112-byte
 license: MIT
 metadata:
   hermes:
-    tags: [AI, Benchmark, Monitoring, Degradation, LLM, Quality, Developer-Tools]
+    tags: [LLM, Benchmark, Quality, Monitoring, Degradation, API, CLI]
     homepage: https://github.com/minirr890112-byte/model-watch
 ---
 
@@ -14,9 +14,9 @@ metadata:
 
 ## Problem → Solution
 
-**The problem**: You're using an AI API for your product. One day, the responses feel off. Weaker reasoning. More hallucinations. Shorter code. Is it real or confirmation bias? You have no baseline to compare against. Your users notice before you do.
+**The problem**: AI companies silently degrade their models. "Opus 4.7 was hallucinating a lot today... shocking to see such degradation" — r/ClaudeAI (49↑). "Anthropic admits to have made hosted models more stupid" — r/LocalLLaMA (281↑). You're paying the same price for a dumber model and you don't even know it.
 
-**The solution**: 7 standardized benchmark questions run against your model. Scores are stored locally and tracked over time. When recent scores drop more than 10% below historical average, you get an alert. Data-driven degradation detection — no more guessing.
+**The solution**: Standardized benchmark suite you run yourself. 7 tests across 5 categories. Scores stored locally. Alerts when recent scores drop >10% vs your historical average. Hard data, not vibes.
 
 ## Quick Start
 
@@ -24,41 +24,28 @@ metadata:
 pip install git+https://github.com/minirr890112-byte/model-watch.git
 
 model-watch demo              # View benchmark questions
-model-watch submit '{"reasoning_1":"...", "coding_1":"..."}'
-model-watch history           # Score trend over time
+model-watch submit '{"reasoning_1":"...","coding_1":"...",...}'  # Submit outputs
+model-watch history           # View score history
 model-watch alert             # Check for degradation
 ```
 
-## Real Output
+## Benchmarks (7 tests)
 
-```
-$ model-watch history
+| Category | Tests | What it measures |
+|----------|-------|-----------------|
+| Reasoning | 2 | Logic, multi-step deduction |
+| Coding | 2 | Code generation, debugging |
+| Writing | 1 | Quality, coherence |
+| Instruction-following | 1 | Precision, constraint adherence |
+| Hallucination detection | 2 | Factual accuracy |
 
-📊 model-watch Score History
-──────────────────────────────────
-2026-05-01  92/100 █████████░ ✅
-2026-05-08  89/100 ████████░░ ✅
-2026-05-15  85/100 ████████░░ ⚠️
-2026-05-22  78/100 ███████░░░ 🚨 DEGRADED
+## How It Works
 
-$ model-watch alert
-🚨 DEGRADATION ALERT
-   Model: gpt-4.1
-   Current avg: 78/100
-   Historical avg: 89/100
-   Drop: 12.4% (>10% threshold)
-   Recommendation: Switch to backup model
-```
-
-## 7 Benchmark Tests
-
-| # | Category | Tests | Weight |
-|---|----------|-------|--------|
-| 1-2 | Reasoning | Logic puzzle, multi-step deduction | 2.0x |
-| 3-4 | Coding | Algorithm, system design | 2.0x |
-| 5 | Writing | Creative prose quality | 1.0x |
-| 6 | Instruction | Following complex directions | 1.5x |
-| 7 | Hallucination | Factual accuracy check | 2.5x |
+1. Run the 7 benchmark questions through your AI model of choice
+2. Feed the responses into `model-watch submit`
+3. Scores are stored locally in `~/.hermes/model-watch-history.json`
+4. Track trends with `model-watch history`
+5. `model-watch alert` flags when recent scores drop >10% vs historical average
 
 ---
-⭐ **Star this repo if you want to know when your AI gets dumber**: [github.com/minirr890112-byte/model-watch](https://github.com/minirr890112-byte/model-watch)
+⭐ **Star this repo if you've noticed your favorite model getting dumber**: [github.com/minirr890112-byte/model-watch](https://github.com/minirr890112-byte/model-watch)
